@@ -30,8 +30,9 @@ public class SellerService {
 
     @DELETE
     @Path("deleteSeller/{sellerid}")
-    public void deleteSeller(@PathParam("sellerid") Long sellerid) {
+    public Response deleteSeller(@PathParam("sellerid") Long sellerid) {
         sellerDAO.deleteEntityById(sellerid);
+        return Response.ok().build();
     }
 
     @PUT

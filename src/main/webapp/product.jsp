@@ -11,23 +11,7 @@
         jQuery(document).ready(function() {
 
             refreshProductList();
-
-            jQuery.ajax({
-                url: 'rest/seller/getAllSellers',
-                dataType: 'json',
-                type: 'GET',
-                success: function(data) {
-                    var sellerSelect = jQuery("#sellerId");
-                    sellerSelect.empty();
-                    sellers.push("<option value=''>Select a seller</option>");
-                    sellerSelect.append("<option value=''>Select a seller</option>");
-
-                    jQuery.each(data, function(index, seller) {
-                        sellerSelect.append("<option value='" + seller.id + "'>" + seller.name + "</option>");
-                        sellers.push("<option value='" + seller.id + "'>" + seller.name + "</option>");
-                    });
-                }
-            });
+            refreshSellerList();
 
             jQuery("#addproduct").click(function() {
                 var sellerId = jQuery("#sellerId").val();
@@ -84,6 +68,25 @@
                 success: function(data) {
                     jQuery('.datarow').remove();
                     jQuery('#headerrow').after(createDataRowsFromJson(data));
+                }
+            });
+        }
+
+        function refreshSellerList() {
+            jQuery.ajax({
+                url: 'rest/seller/getAllSellers',
+                dataType: 'json',
+                type: 'GET',
+                success: function(data) {
+                    var sellerSelect = jQuery("#sellerId");
+                    sellerSelect.empty();
+                    sellers.push("<option value=''>Select a seller</option>");
+                    sellerSelect.append("<option value=''>Select a seller</option>");
+
+                    jQuery.each(data, function(index, seller) {
+                        sellerSelect.append("<option value='" + seller.id + "'>" + seller.name + "</option>");
+                        sellers.push("<option value='" + seller.id + "'>" + seller.name + "</option>");
+                    });
                 }
             });
         }

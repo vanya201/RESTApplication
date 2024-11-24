@@ -30,8 +30,9 @@ public class ProductService {
 
     @DELETE
     @Path("deleteProduct/{productid}")
-    public void deleteProduct(@PathParam("productid") Long productid) {
+    public Response deleteProduct(@PathParam("productid") Long productid) {
         productDAO.deleteEntityById(productid);
+        return Response.ok().build();
     }
 
     @PUT
