@@ -30,7 +30,6 @@
                     contentType: 'application/json',
                     type: 'POST',
                     success: function() {
-
                         jQuery.ajax({
                             url: 'rest/seller/getAllSellers',
                             dataType: 'json',
@@ -42,6 +41,10 @@
                                 jQuery("#selleremail").val('');
                             }
                         });
+
+                    },
+                    error: function(xhr, status, error) {
+                        jQuery("#sellername").val("Name incorrect");
                     }
                 });
             });
@@ -148,7 +151,11 @@
                             jQuery('#headerrow').after(createDataRowsFromJson(data));
                         }
                     });
+                },
+                error: function(xhr, status, error) {
+                    jQuery("#editname").val("Name incorrect");
                 }
+
             });
         }
     </script>

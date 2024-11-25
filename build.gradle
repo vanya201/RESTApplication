@@ -1,6 +1,7 @@
 plugins {
   id 'java'
   id 'war'
+  id 'idea'
 }
 
 group 'org.example'
@@ -24,7 +25,6 @@ tasks.withType(JavaCompile) {
 dependencies {
   implementation 'javax.servlet:javax.servlet-api:3.0.1'
   implementation 'javax.servlet.jsp:jsp-api:2.1'
-
   implementation 'javax.servlet:jstl:1.2'
 
   // Jersey dependencies for JAX-RS
@@ -32,13 +32,35 @@ dependencies {
   implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:2.30.1'
   implementation 'org.glassfish.jersey.inject:jersey-hk2:2.30.1'
   implementation 'org.glassfish.jersey.media:jersey-media-multipart:2.30.1'
+
   // Swagger for JAX-RS
   implementation 'io.swagger:swagger-jaxrs:1.5.13'
 
+  // Hibernate and JPA
   implementation 'org.hibernate:hibernate-core:5.6.6.Final'
+  implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final' // Correct version for javax.validation
   implementation 'javax.persistence:javax.persistence-api:2.2'
+
+  // PostgreSQL Driver
   runtimeOnly 'org.postgresql:postgresql:42.7.3'
+
+  // SLF4J and Logback for logging
+  implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'
+  implementation 'ch.qos.logback:logback-classic:1.4.11'
+  implementation 'ch.qos.logback:logback-core:1.4.11'
+
+  // Validation API
   implementation 'javax.validation:validation-api:2.0.1.Final'
+
+  // EL dependency required by Hibernate Validator
+  implementation 'org.glassfish:javax.el:3.0.0'
+}
+
+idea {
+  module {
+    downloadJavadoc = true
+    downloadSources = true
+  }
 }
 
 test {

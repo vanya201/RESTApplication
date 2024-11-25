@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,14 +17,16 @@ public class Seller {
     @Column(name = "seller_id")
     private Long id;
 
-    @Column(name = "seller_name", length = 40)
+
+    @Column(name = "seller_name")
+    @Size(min = 2, max = 24)
     private String name;
 
-    @Column(name = "seller_email", length = 40)
+    @Column(name = "seller_email")
     private String email;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products;
 
     public Seller() {}
 

@@ -20,7 +20,7 @@ public class Product {
     @Column(name = "product_name", length = 255)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "seller_id", referencedColumnName = "seller_id")
     private Seller seller;
 

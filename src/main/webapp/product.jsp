@@ -96,10 +96,8 @@
 
             jQuery.ajax({
                 url: url,
-                dataType: 'json',
                 type: 'DELETE',
-                success: function(data) {
-                    // ????????? ?????? ????????? ????? ????????
+                success: function() {
                     refreshProductList();
                 }
             });
